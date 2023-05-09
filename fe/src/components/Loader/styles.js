@@ -1,34 +1,5 @@
 import styled, { keyframes } from 'styled-components'
 
-export const Overlay = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(246, 245, 252, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .loader {
-  color: ${({ theme }) => theme.colors.primary.main};
-  font-size: 90px;
-  text-indent: -9999em;
-  overflow: hidden;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  margin: 72px auto;
-  position: relative;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation: ${load} 1.7s infinite ease, ${round} 1.7s infinite ease;
-  animation: ${load} 1.7s infinite ease, ${round} 1.7s infinite ease;
-}
-`
-
 const load = keyframes`
   0% {
     box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
@@ -61,4 +32,33 @@ const round = keyframes`
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+`
+
+export const Overlay = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(246, 245, 252, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .loader {
+  color: ${({ theme }) => theme.colors.primary.main};
+  font-size: 90px;
+  text-indent: -9999em;
+  overflow: hidden;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  margin: 72px auto;
+  position: relative;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: ${load} 1.7s infinite ease, ${round} 1.7s infinite ease;
+  animation: ${load} 1.7s infinite ease, ${round} 1.7s infinite ease;
+}
 `
