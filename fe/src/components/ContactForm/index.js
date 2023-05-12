@@ -1,12 +1,16 @@
-import { useState } from 'react'
 import PropTypes from 'prop-types'
+import { useState } from 'react'
+
+import isEmailValid from '../../utils/isEmailValid'
+import useErrors from '../../hooks/useErrors'
+
+import { Form, ButtonContainer } from './styles'
 
 import FormGroup from '../FormGroup'
 import Input from '../Input'
 import Select from '../Select'
 import Button from '../Button'
 
-import { Form, ButtonContainer } from './styles'
 
 export default function ContactForm({ buttonLabel }) {
 	const [name, setName] = useState('')
@@ -14,28 +18,49 @@ export default function ContactForm({ buttonLabel }) {
 	const [phone, setPhone] = useState('')
 	const [category, setCategory] = useState('')
 
-	function handleSubmit(event) {
+	const { setError, removeError, getErrorMessageByFieldName } = useErrors()
+
+	function handleNameChange(event){
+		setName(event.target.value)
+
+		if (!event.target.value) {
+			setError({ field: 'name', message: 'Nome é obrigatório.' })
+		} else {
+			removeError('name')
+		}
+	}
+
+	function handleEmailChange(event) {
+		setEmail(event.target.value)
+
+		if (event.target.value && !isEmailValid(event.target.value)) {
+			setError({ field: 'email', message: 'E-mail inválido.' })
+		} else {
+			removeError('email')
+		}
+	}
+
+	function handleSubmit(event){
 		event.preventDefault()
 	}
 
 	return (
 		<Form onSubmit={handleSubmit}>
-			<FormGroup>
+			<FormGroup error={getErrorMessageByFieldName('name')}>
 				<Input
+					error={getErrorMessageByFieldName('name')}
 					placeholder="Nome"
 					value={name}
-					onChange={(event) => setName(event.target.value)}
+					onChange={handleNameChange}
 				/>
 			</FormGroup>
 
-			<FormGroup
-				error="O formato do e-mail é inválido."
-			>
+			<FormGroup error={getErrorMessageByFieldName('email')}>
 				<Input
+					error={getErrorMessageByFieldName('email')}
 					placeholder="Email"
 					value={email}
-					onChange={(event) => setEmail(event.target.value)}
-					error
+					onChange={handleEmailChange}
 				/>
 			</FormGroup>
 
