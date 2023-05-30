@@ -14,7 +14,7 @@ class ContactController {
     const contact = await ContactRepository.findById(id);
 
     if (!contact) {
-      return response.status(400).json({ error: 'Contact not found' });
+      return response.status(404).json({ error: 'Contact not found' });
     }
 
     response.json(contact);
