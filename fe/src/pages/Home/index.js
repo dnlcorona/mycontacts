@@ -8,11 +8,11 @@ import edit from '../../assets/images/icons/edit.svg'
 import trash from '../../assets/images/icons/trash.svg'
 import sad from '../../assets/images/sad.svg'
 import magnifierQuestion from '../../assets/images/magnifier-question.svg'
-
 import emptyBox from '../../assets/images/empty-box.svg'
 
 import Loader from '../../components/Loader'
 import Button from '../../components/Button'
+import Modal from '../../components/Modal'
 
 import ContactsService from '../../services/ContactsService'
 
@@ -65,6 +65,12 @@ export default function Home() {
 	return (
 		<Container>
 			<Loader isLoading={isLoading} />
+
+			<Modal
+				danger
+				title="Tem certeza que deseja remover o contato"
+				confirmLabel="Deletar"
+			/>
 
 			{contacts.length > 0 && (
 				<InputSearchContainer>
