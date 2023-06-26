@@ -34,7 +34,7 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
 				setName(contact.name ?? '')
 				setEmail(contact.email ?? '')
 				setPhone(formatPhone(contact.phone ?? ''))
-				setCategoryId(contact.category_id ?? '')
+				setCategoryId(contact.category.id ?? '')
 			},
 			resetFields: () => {
 				setName('')
@@ -89,7 +89,6 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
 
 		setIsSubmitting(true)
 
-		//handleSubmit in ./NewContact
 		await onSubmit({ name, email, phone, categoryId })
 
 		setIsSubmitting(false)
